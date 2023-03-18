@@ -28,7 +28,7 @@
 
 ```
 //print("hello")
-lua_fmtcall(L,"print","%s","hello");
+lua_callf(L,"print","%s","hello");
 ```
 
 
@@ -36,7 +36,7 @@ lua_fmtcall(L,"print","%s","hello");
 //lua code
 //f=math.pow(5,2)
 //c code 2个int输入，1个double 输出
-lua_fmtcall(L, "math.pow", "%d%d&f", 5,2,&f);
+lua_callf(L, "math.pow", "%d%d&f", 5,2,&f);
 ```
 
 

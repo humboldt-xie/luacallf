@@ -8,7 +8,7 @@ typedef struct {
     void *value;
 }lua_output;
 
-int lua_fmtcall(lua_State *L,char *fn,char *format, ...) {
+int lua_callf(lua_State *L,char *fn,char *format, ...) {
     int top=lua_gettop(L);
 
     char fnn[255];
@@ -121,8 +121,8 @@ int lua_fmtcall(lua_State *L,char *fn,char *format, ...) {
     lua_pop(L,outputCount);
 
     if(lua_gettop(L) != top){
-        //luaL_error(L, "lua_fmtcall: stack size changed")
-        printf("lua_fmtcall: stack size changed %d %d",top,lua_gettop(L));
+        //luaL_error(L, "lua_callf: stack size changed")
+        printf("lua_callf: stack size changed %d %d",top,lua_gettop(L));
         exit(-1);
     }
 
@@ -147,9 +147,9 @@ int main(){
     int a=0;
     double f=0.0;
     char b[255];
-    lua_fmtcall(L, "math.pow", "%d%d&f", 5,2,&f,b);
+    lua_callf(L, "math.pow", "%d%d&f", 5,2,&f,b);
     printf("pow %f \n",f);
-    //lua_fmtcall(L, "hello", "%d%s&d&s", 5,"world",&a,b);
+    //lua_callf(L, "hello", "%d%s&d&s", 5,"world",&a,b);
     printf("Hello %d %s",a,b);
     lua_close(L);
     return 0;
