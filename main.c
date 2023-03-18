@@ -140,16 +140,17 @@ int main(){
     luaL_openlibs(L);
     luaL_dostring(L,
     "function hello(a,b,c,d)\n"
-        "print(a,b,c,d)\n"
+        "print(\"hello args\",a,b,c,d)\n"
         "return a,b,c,d\n"
     "end\n");
     //luaL_dofile(L, "script.lua");
-    int a=0;
     double f=0.0;
-    char b[255];
-    lua_callf(L, "math.pow", "%d%d&f", 5,2,&f,b);
+    lua_callf(L, "math.pow", "%d%d&f", 5,2,&f);
     printf("pow %f \n",f);
-    //lua_callf(L, "hello", "%d%s&d&s", 5,"world",&a,b);
+
+    int a=0;
+    char b[255];
+    lua_callf(L, "hello", "%d%s&d&s", 5,"world",&a,b);
     printf("Hello %d %s",a,b);
     lua_close(L);
     return 0;
